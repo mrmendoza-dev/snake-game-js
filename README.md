@@ -8,3 +8,7 @@
 - Elapsed game time
 - Highest score record
     - Top 5 scores with player names
+- Audio
+    - Sound effects
+    - Game music
+    - Mute button
