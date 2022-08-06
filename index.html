@@ -10,28 +10,29 @@
 
     </head>
 
-    <body class="snake-game">
-        <h1 class="game-title">Snake</h1>
+    <body>
+        <div class="snake-game">
+            <h1 class="game-title">Snake</h1>
 
-        <div class="snake-display-frame">
+            <div class="snake-display-frame">
 
-            <div class="game__header">
-                <p class="header-text" id="elapsedTime">Time: 0</p>
-                <p class="header-text" id="score">Score: 0</p>
-                <p class="header-text" id="highScore">High Score: 0</p>
+                <div class="game__header">
+                    <p class="header-text" id="elapsedTime">Time: 0</p>
+                    <p class="header-text" id="score">Score: 0</p>
+                    <p class="header-text" id="highScore">High Score: 0</p>
+                </div>
+
+                <div class="screen-message" id="screenMessage"></div>
+                <canvas class="snake-canvas" id="board"></canvas>
+
+                <div class="game__footer"></div>
             </div>
 
-            <div class="screen-message" id="screenMessage"></div>
-            <canvas class="snake-canvas" id="board"></canvas>
-
-            <div class="game__footer"></div>
+            <button class="snake-start-btn" id="startBtn">Start</button>
         </div>
-
-        <button class="snake-start-btn" id="startBtn">Start</button>
-
 
 
         <script src="snake.js"></script>
         
-    </body>
+    </bodyclass=>
 </html>

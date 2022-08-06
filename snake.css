@@ -1,5 +1,14 @@
+
+
+
+@font-face {
+  src: url("fonts/ARCADE_N.ttf");
+  font-family: arcade;
+}
+
+
 .snake-game {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: arcade, 'Courier New', Courier, monospace;
     text-align: center;
     color: #fff;
     background-color: #000;
@@ -14,7 +23,6 @@
 }
 
 .display-frame {
-    background-color: #000;
     position: relative;
 }
 
@@ -31,7 +39,7 @@
 }
 
 .header-text {
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -39,7 +47,7 @@
 .screen-message {
     color: #fff;
     margin: 0 auto;
-    font-size: 2.6rem;
+    font-size: 1.8rem;
     transform: translateY(200%);
     font-weight: bold;
 

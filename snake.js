@@ -70,16 +70,10 @@ function end() {
   var timeDiff = endTime - startTime; //in ms
   // strip the ms
   timeDiff /= 1000;
-
   // get seconds
   var seconds = Math.round(timeDiff);
-  console.log(seconds + " seconds");
   return seconds;
 }
-
-
-
-
 
 
 
@@ -131,20 +125,12 @@ function resetBoard() {
 }
 
 
-
-
 function loseGame() {
     gameOver = true;
     clearInterval();
     screenMessage.style.opacity = 100;
     screenMessage.innerText = "Game Over";
 } 
-
-
-
-
-
-
 
 
 function eatFood() {
@@ -155,12 +141,9 @@ function eatFood() {
 
     if (score > highScore) {
         highScore = score;
-        setHighScore();
+        updateHighScore();
     }
 }
-
-
-
 
 function update() {
   if (gameOver) {
@@ -210,7 +193,6 @@ function update() {
     }
   }
 }
-
 
 
 function changeDirection(e) {
