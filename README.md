@@ -12,3 +12,6 @@
     - Sound effects
     - Game music
     - Mute button
+- Difficulty
+    - Faster gameplay
+    - Hazards

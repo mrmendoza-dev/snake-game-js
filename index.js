@@ -1,41 +1,172 @@
+
+const elapsedTimeEl = document.getElementById("elapsedTime");
+const scoreEl = document.getElementById("score");
+const highScoreEl = document.getElementById("highScore");
+const screenMessage = document.getElementById("screenMessage");
+
+const startBtn = document.getElementById("startBtn");
+
+
+
+startBtn.addEventListener("click", startGame);
+let gameOver = false;
+let score = 0;
+let highScore = 0;
+let timer = null;
+
+
+
+
+
+
 //board
-var blockSize = 25;
-var rows = 20;
-var cols = 20;
-var board;
-var context;
+const blockSize = 25;
+// 4:3 aspect ratio 32:24, change size in CSS canvas
+const rows = 24;
+const cols = 32;
+let board;
+let context;
 
 //snake head
-var snakeX = blockSize * 5;
-var snakeY = blockSize * 5;
-
-var velocityX = 0;
-var velocityY = 0;
-
-var snakeBody = [];
+let snakeX = blockSize * 5;
+let snakeY = blockSize * 5;
+let velocityX = 0;
+let velocityY = 0;
+let snakeBody = [];
 
 //food
-var foodX;
-var foodY;
+let foodX;
+let foodY;
 
-var gameOver = false;
 
-window.onload = function () {
-  board = document.getElementById("board");
-  board.height = rows * blockSize;
-  board.width = cols * blockSize;
-  context = board.getContext("2d"); //used for drawing on the board
 
-  placeFood();
-  document.addEventListener("keyup", changeDirection);
-  // update();
-  setInterval(update, 1000 / 10); //100 milliseconds
-};
+
+
+
+if (JSON.parse(localStorage.getItem("highScore"))) {
+    highScore = JSON.parse(localStorage.getItem("highScore"));
+}
+
+function updateHighScore() {
+    localStorage.setItem("highScore", JSON.stringify(highScore));
+    highScoreEl.innerText = `High Score: ${highScore}`;
+}
+
+
+function updateScore() {
+    scoreEl.innerText = `Score: ${score}`;
+}
+
+
+
+let startTime, endTime;
+
+function start() {
+  startTime = new Date();
+}
+
+function end() {
+  endTime = new Date();
+  var timeDiff = endTime - startTime; //in ms
+  // strip the ms
+  timeDiff /= 1000;
+
+  // get seconds
+  var seconds = Math.round(timeDiff);
+  console.log(seconds + " seconds");
+  return seconds;
+}
+
+
+
+
+
+
+
+
+function startGame() {
+    start();
+    resetGame();
+    resetBoard();
+    document.addEventListener("keyup", changeDirection);
+    document.addEventListener("keyup", (e)=> {
+        if (e.code == "Space") {
+            startGame();
+        }
+    });
+
+    timer = setInterval(update, 1000 / 10); //100 milliseconds
+    updateHighScore();
+    screenMessage.innerText = "Move to Start Game";
+
+}
+
+
+
+function resetGame() {
+    screenMessage.style.opacity = 100;
+
+
+    gameOver = false;
+    score = 0;
+    snakeX = blockSize * 5;
+    snakeY = blockSize * 5;
+    velocityX = 0;
+    velocityY = 0;
+    snakeBody = [];
+    clearInterval(timer);
+    updateScore();
+
+}
+
+
+function resetBoard() {
+    board = document.getElementById("board");
+    board.height = rows * blockSize;
+    board.width = cols * blockSize;
+    context = board.getContext("2d"); //used for drawing on the board
+
+    placeSnake();
+    placeFood();
+}
+
+
+
+
+function loseGame() {
+    gameOver = true;
+    clearInterval();
+    screenMessage.style.opacity = 100;
+    screenMessage.innerText = "Game Over";
+} 
+
+
+
+
+
+
+
+
+function eatFood() {
+    snakeBody.push([foodX, foodY]);
+    placeFood();
+    score += 1;
+    scoreEl.innerText = `Score: ${score}`
+
+    if (score > highScore) {
+        highScore = score;
+        setHighScore();
+    }
+}
+
+
+
 
 function update() {
   if (gameOver) {
     return;
   }
+    elapsedTimeEl.innerText = `Time: ${end()}`;
 
   context.fillStyle = "black";
   context.fillRect(0, 0, board.width, board.height);
@@ -44,8 +175,7 @@ function update() {
   context.fillRect(foodX, foodY, blockSize, blockSize);
 
   if (snakeX == foodX && snakeY == foodY) {
-    snakeBody.push([foodX, foodY]);
-    placeFood();
+    eatFood();
   }
 
   for (let i = snakeBody.length - 1; i > 0; i--) {
@@ -70,19 +200,23 @@ function update() {
     snakeY < 0 ||
     snakeY > rows * blockSize
   ) {
-    gameOver = true;
-    alert("Game Over");
+    loseGame();
   }
 
   for (let i = 0; i < snakeBody.length; i++) {
     if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
-      gameOver = true;
-      alert("Game Over");
+        loseGame();
+
     }
   }
 }
 
+
+
 function changeDirection(e) {
+    if (!gameOver) {screenMessage.style.opacity = 0;
+}
+
   if (e.code == "ArrowUp" && velocityY != 1) {
     velocityX = 0;
     velocityY = -1;
@@ -99,7 +233,16 @@ function changeDirection(e) {
 }
 
 function placeFood() {
-  //(0-1) * cols -> (0-19.9999) -> (0-19) * 25
   foodX = Math.floor(Math.random() * cols) * blockSize;
   foodY = Math.floor(Math.random() * rows) * blockSize;
 }
+
+
+function placeSnake() {
+  snakeX = Math.floor(Math.random() * cols) * blockSize;
+  snakeY = Math.floor(Math.random() * rows) * blockSize;
+}
+
+
+
+window.onload = startGame;
