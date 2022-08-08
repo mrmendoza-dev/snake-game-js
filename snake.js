@@ -126,6 +126,8 @@ function resetBoard() {
 
 
 function loseGame() {
+    let sound = new Audio(`audio/snake-die.wav`);
+    sound.play();
     gameOver = true;
     clearInterval();
     screenMessage.style.opacity = 100;
@@ -143,6 +145,8 @@ function eatFood() {
         highScore = score;
         updateHighScore();
     }
+    let sound = new Audio(`audio/snake-eat.wav`);
+    sound.play();
 }
 
 function update() {
