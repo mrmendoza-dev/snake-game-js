@@ -3,9 +3,7 @@ const elapsedTimeEl = document.getElementById("elapsedTime");
 const scoreEl = document.getElementById("score");
 const highScoreEl = document.getElementById("highScore");
 const screenMessage = document.getElementById("screenMessage");
-
 const startBtn = document.getElementById("startBtn");
-
 
 
 startBtn.addEventListener("click", startGame);
@@ -13,9 +11,6 @@ let gameOver = false;
 let score = 0;
 let highScore = 0;
 let timer = null;
-
-
-
 
 
 
@@ -37,8 +32,6 @@ let snakeBody = [];
 //food
 let foodX;
 let foodY;
-
-
 
 
 
