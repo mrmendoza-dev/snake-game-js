@@ -14,50 +14,51 @@
     background-color: #000;
     font-size: 16px;
     margin: 0;
-    --canvas-width: 600px;
+    --canvas-width: 400px;
 }
 
 .snake-canvas {
     border: 1px solid white;
-    max-width: var(--canvas-width);
+    width: var(--canvas-width);
 }
 
 .display-frame {
     position: relative;
 }
 
-.game__header {
+h1 {
+    font-size: 1.6rem;
+}
+
+.game-header {
     /* background-color: #000; */
     display: flex;
     justify-content: space-between;
     font-size: 1.4rem;
-    max-width: var(--canvas-width);
+    width: var(--canvas-width);
     margin: 0 auto;
     transform: translateY(100%);
     padding: 0 .5em;
-        text-shadow: 0 0 2px white;
+    text-shadow: 0 0 2px white;
 
 
 }
 
 .header-text {
-    font-size: 1rem;
+    font-size: .6rem;
     font-weight: bold;
-        color: #fff;
-
-        text-shadow: 0 0 2px white;
-
+    color: #fff;
+    text-shadow: 0 0 2px white;
 }
 
 
 .screen-message {
     color: #fff;
     margin: 0 auto;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     text-shadow: 0 0 2px white;
     transform: translateY(200%);
     font-weight: bold;
-
 }
 
 
@@ -77,4 +78,19 @@
     color: #000;
     background-color: #fff;
 
+}
+
+@media screen and (min-width: 800px) {
+    .snake-game {
+        --canvas-width: 700px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .screen-message {
+        font-size: 2rem;
+    }
+    .header-text {
+        font-size: 1.1rem;
+    }
 }
