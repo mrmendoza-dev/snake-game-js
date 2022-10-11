@@ -7,7 +7,7 @@ const startBtn = document.getElementById("startBtn");
 
 
 startBtn.addEventListener("click", startGame);
-let gameOver = true;
+let gameOver = false;
 let score = 0;
 let highScore = 0;
 let timer = null;
