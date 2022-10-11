@@ -5,6 +5,9 @@
 
 body {
     background-color: black;
+    overflow: hidden;
+    height: 100vh;
+    margin: 0 auto;
 }
 
 

@@ -6,11 +6,7 @@
   font-family: arcade;
 }
 
-body {
-    overflow: hidden;
-    height: 100vh;
-    margin: 0 auto;
-}
+
 .snake-game {
     font-family: arcade, 'Courier New', Courier, monospace;
     max-height: 500px;
