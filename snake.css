@@ -10,7 +10,6 @@
 .snake-game {
     font-family: arcade, 'Courier New', Courier, monospace;
     max-height: 500px;
-
     text-align: center;
     color: #fff;
     background-color: #000;
@@ -82,6 +81,8 @@ h1 {
 
 }
 
+
+
 @media screen and (min-width: 800px) {
     .snake-game {
         --canvas-width: 700px;
@@ -98,3 +99,4 @@ h1 {
         font-size: 1.1rem;
     }
 }
+

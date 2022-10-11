@@ -7,7 +7,7 @@ const startBtn = document.getElementById("startBtn");
 
 
 startBtn.addEventListener("click", startGame);
-let gameOver = false;
+let gameOver = true;
 let score = 0;
 let highScore = 0;
 let timer = null;
@@ -92,9 +92,6 @@ function startGame() {
 
 function resetGame() {
     screenMessage.style.opacity = 100;
-
-
-    gameOver = false;
     score = 0;
     snakeX = blockSize * 5;
     snakeY = blockSize * 5;
