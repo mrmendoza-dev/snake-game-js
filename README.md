@@ -8,10 +8,11 @@
 - Elapsed game time
 - Highest score record (TODO)
     - Top 5 scores with player names
-- Audio (TODO)
+- Audio
     - Sound effects
-    - Game music
-    - Mute button
-- Difficulty (TODO)
-    - Faster gameplay
-    - Hazards
+    - Mute button (TODO)
+- Difficulty
+    - Faster gameplay (TODO)
+    - Hazards (TODO)
+- Controls
+    - Directional pad buttons
