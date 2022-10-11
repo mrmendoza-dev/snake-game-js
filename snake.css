@@ -9,6 +9,8 @@
 
 .snake-game {
     font-family: arcade, 'Courier New', Courier, monospace;
+    max-height: 500px;
+
     height: 100vh;
     text-align: center;
     color: #fff;
@@ -16,6 +18,7 @@
     font-size: 16px;
     margin: 0;
     --canvas-width: 400px;
+    overflow: hidden;
 }
 
 .snake-canvas {
@@ -83,6 +86,8 @@ h1 {
 @media screen and (min-width: 800px) {
     .snake-game {
         --canvas-width: 700px;
+        max-height: 720px;
+
     }
     h1 {
         font-size: 2rem;
