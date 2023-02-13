@@ -1,102 +1,88 @@
-
-
-
 @font-face {
   src: url("fonts/ARCADE_N.ttf");
   font-family: arcade;
 }
 
-
 .snake-game {
-    font-family: arcade, 'Courier New', Courier, monospace;
-    max-height: 500px;
-    text-align: center;
-    color: #fff;
-    background-color: #000;
-    font-size: 16px;
-    margin: 0;
-    --canvas-width: 400px;
-    overflow: hidden;
+  font-family: arcade, "Courier New", Courier, monospace;
+  max-height: 500px;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+  font-size: 16px;
+  margin: 0;
+  --canvas-width: 400px;
+  overflow: hidden;
 }
 
 .snake-canvas {
-    border: 1px solid white;
-    width: var(--canvas-width);
+  border: 1px solid white;
+  width: var(--canvas-width);
 }
 
 .display-frame {
-    position: relative;
+  position: relative;
 }
 
 h1 {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 }
 
 .game-header {
-    /* background-color: #000; */
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.4rem;
-    width: var(--canvas-width);
-    margin: 0 auto;
-    transform: translateY(100%);
-    padding: 0 .5em;
-    text-shadow: 0 0 2px white;
-
-
+  /* background-color: #000; */
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  width: var(--canvas-width);
+  margin: 0 auto;
+  transform: translateY(100%);
+  padding: 0 0.5em;
+  text-shadow: 0 0 2px white;
 }
 
 .header-text {
-    font-size: .6rem;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 0 2px white;
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 2px white;
 }
-
 
 .screen-message {
-    color: #fff;
-    margin: 0 auto;
-    font-size: 1.2rem;
-    text-shadow: 0 0 2px white;
-    transform: translateY(200%);
-    font-weight: bold;
+  color: #fff;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  text-shadow: 0 0 2px white;
+  transform: translateY(200%);
+  font-weight: bold;
 }
-
 
 .snake-start-btn {
-    font-size: 1.4rem;
-    padding: .25em .5em;
-    color: #fff;
-    background-color: #000;
-    border: 1px solid white;
-    font-family: inherit;
-    cursor: pointer;
-    margin-top: .5em;
-
+  font-size: 1.4rem;
+  padding: 0.25em 0.5em;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid white;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 0.5em;
 }
 .snake-start-btn:hover {
-    color: #000;
-    background-color: #fff;
-
+  color: #000;
+  background-color: #fff;
 }
-
-
 
 @media screen and (min-width: 800px) {
-    .snake-game {
-        --canvas-width: 700px;
-        max-height: 720px;
-
-    }
-    h1 {
-        font-size: 2rem;
-    }
-    .screen-message {
-        font-size: 2rem;
-    }
-    .header-text {
-        font-size: 1.1rem;
-    }
+  .snake-game {
+    --canvas-width: 700px;
+    max-height: 720px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .screen-message {
+    font-size: 2rem;
+  }
+  .header-text {
+    font-size: 1.1rem;
+  }
 }
-

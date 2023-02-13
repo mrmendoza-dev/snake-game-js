@@ -1,18 +1,14 @@
-
 const elapsedTimeEl = document.getElementById("elapsedTime");
 const scoreEl = document.getElementById("score");
 const highScoreEl = document.getElementById("highScore");
 const screenMessage = document.getElementById("screenMessage");
 const startBtn = document.getElementById("startBtn");
 
-
 startBtn.addEventListener("click", startGame);
 let gameOver = false;
 let score = 0;
 let highScore = 0;
 let timer = null;
-
-
 
 //board
 const blockSize = 25;
@@ -33,24 +29,18 @@ let snakeBody = [];
 let foodX;
 let foodY;
 
-
-
-
 if (JSON.parse(localStorage.getItem("highScore"))) {
-    highScore = JSON.parse(localStorage.getItem("highScore"));
+  highScore = JSON.parse(localStorage.getItem("highScore"));
 }
 
 function updateHighScore() {
-    localStorage.setItem("highScore", JSON.stringify(highScore));
-    highScoreEl.innerText = `High Score: ${highScore}`;
+  localStorage.setItem("highScore", JSON.stringify(highScore));
+  highScoreEl.innerText = `High Score: ${highScore}`;
 }
-
 
 function updateScore() {
-    scoreEl.innerText = `Score: ${score}`;
+  scoreEl.innerText = `Score: ${score}`;
 }
-
-
 
 let startTime, endTime;
 
@@ -68,82 +58,73 @@ function end() {
   return seconds;
 }
 
-
-
-
 function startGame() {
-    start();
-    resetGame();
-    resetBoard();
-    document.addEventListener("keyup", changeDirection);
-    document.addEventListener("keyup", (e)=> {
-        if (e.code == "Space") {
-            startGame();
-        }
-    });
+  gameOver = false;
+  start();
+  resetGame();
+  resetBoard();
+  document.addEventListener("keyup", changeDirection);
+  document.addEventListener("keyup", (e) => {
+    if (e.code == "Space") {
+      startGame();
+    }
+  });
 
-    timer = setInterval(update, 1000 / 10); //100 milliseconds
-    updateHighScore();
-    screenMessage.innerText = "Move to Start Game";
-
+  timer = setInterval(update, 1000 / 10); //100 milliseconds
+  updateHighScore();
+  screenMessage.innerText = "Move to Start Game";
 }
-
-
 
 function resetGame() {
-    screenMessage.style.opacity = 100;
-    score = 0;
-    snakeX = blockSize * 5;
-    snakeY = blockSize * 5;
-    velocityX = 0;
-    velocityY = 0;
-    snakeBody = [];
-    clearInterval(timer);
-    updateScore();
-
+  screenMessage.style.opacity = 100;
+  score = 0;
+  snakeX = blockSize * 5;
+  snakeY = blockSize * 5;
+  velocityX = 0;
+  velocityY = 0;
+  snakeBody = [];
+  clearInterval(timer);
+  updateScore();
 }
-
 
 function resetBoard() {
-    board = document.getElementById("board");
-    board.height = rows * blockSize;
-    board.width = cols * blockSize;
-    context = board.getContext("2d"); //used for drawing on the board
+  board = document.getElementById("board");
+  board.height = rows * blockSize;
+  board.width = cols * blockSize;
+  context = board.getContext("2d"); //used for drawing on the board
 
-    placeSnake();
-    placeFood();
+  placeSnake();
+  placeFood();
 }
 
-
 function loseGame() {
-    let sound = new Audio(`audio/snake-die.wav`);
-    sound.play();
-    gameOver = true;
-    clearInterval();
-    screenMessage.style.opacity = 100;
-    screenMessage.innerText = "Game Over";
-} 
-
+  let sound = new Audio(`audio/snake-die.wav`);
+  sound.play();
+  gameOver = true;
+  clearInterval();
+  screenMessage.style.opacity = 100;
+  screenMessage.innerText = "Game Over";
+}
 
 function eatFood() {
-    snakeBody.push([foodX, foodY]);
-    placeFood();
-    score += 1;
-    scoreEl.innerText = `Score: ${score}`
+  snakeBody.push([foodX, foodY]);
+  placeFood();
+  score += 1;
+  scoreEl.innerText = `Score: ${score}`;
 
-    if (score > highScore) {
-        highScore = score;
-        updateHighScore();
-    }
-    let sound = new Audio(`audio/snake-eat.wav`);
-    sound.play();
+  if (score > highScore) {
+    highScore = score;
+    updateHighScore();
+  }
+  let sound = new Audio(`audio/snake-eat.wav`);
+  sound.play();
 }
 
 function update() {
   if (gameOver) {
     return;
   }
-    elapsedTimeEl.innerText = `Time: ${end()}`;
+  elapsedTimeEl.innerText = `Time: ${end()}`;
 
   context.fillStyle = "black";
   context.fillRect(0, 0, board.width, board.height);
@@ -182,16 +163,15 @@ function update() {
 
   for (let i = 0; i < snakeBody.length; i++) {
     if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
-        loseGame();
-
+      loseGame();
     }
   }
 }
 
-
 function changeDirection(e) {
-    if (!gameOver) {screenMessage.style.opacity = 0;
-}
+  if (!gameOver) {
+    screenMessage.style.opacity = 0;
+  }
 
   if (e.code == "ArrowUp" && velocityY != 1) {
     velocityX = 0;
@@ -213,12 +193,9 @@ function placeFood() {
   foodY = Math.floor(Math.random() * rows) * blockSize;
 }
 
-
 function placeSnake() {
   snakeX = Math.floor(Math.random() * cols) * blockSize;
   snakeY = Math.floor(Math.random() * rows) * blockSize;
 }
-
-
 
 window.onload = startGame;

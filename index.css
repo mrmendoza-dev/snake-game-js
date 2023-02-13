@@ -1,13 +1,11 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 body {
-    background-color: black;
-    overflow: hidden;
-    height: 100vh;
-    margin: 0 auto;
+  background-color: black;
+  overflow: hidden;
+  height: 100vh;
+  margin: 0 auto;
 }
-
-
