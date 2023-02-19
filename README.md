@@ -1,6 +1,6 @@
 
 # Snake Game
-### Simple snake game made by [Kenny Yip Coding](https://www.youtube.com/watch?v=baBq5GAL0_U&t=1365s), with extended features
+### Simple snake game made by [Kenny Yip Coding](https://www.youtube.com/watch?v=baBq5GAL0_U), with extended features
 
 ### Added Features
 - Start game button
