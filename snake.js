@@ -6,6 +6,8 @@ const startBtn = document.getElementById("startBtn");
 
 startBtn.addEventListener("click", startGame);
 let gameOver = false;
+let gameStarted = false; // Add this variable
+
 let score = 0;
 let highScore = 0;
 let timer = null;
@@ -60,10 +62,10 @@ function end() {
 
 function startGame() {
   gameOver = false;
-  start();
+  gameStarted = false; // Set gameStarted to false
   resetGame();
   resetBoard();
-  document.addEventListener("keyup", changeDirection);
+  document.addEventListener("keydown", changeDirection); // Change this from 'keyup' to 'keydown'
   document.addEventListener("keyup", (e) => {
     if (e.code == "Space") {
       startGame();
@@ -74,6 +76,7 @@ function startGame() {
   updateHighScore();
   screenMessage.innerText = "Move to Start Game";
 }
+
 
 function resetGame() {
   screenMessage.style.opacity = 100;
@@ -121,7 +124,8 @@ function eatFood() {
 }
 
 function update() {
-  if (gameOver) {
+  if (gameOver || !gameStarted) {
+    // Add !gameStarted to the condition
     return;
   }
   elapsedTimeEl.innerText = `Time: ${end()}`;
@@ -171,22 +175,28 @@ function update() {
 function changeDirection(e) {
   if (!gameOver) {
     screenMessage.style.opacity = 0;
+    if (!gameStarted) {
+      // Start the timer when the player moves for the first time
+      gameStarted = true;
+      start();
+    }
   }
 
-  if (e.code == "ArrowUp" && velocityY != 1) {
+  if ((e.code == "ArrowUp" || e.code == "KeyW") && velocityY != 1) {
     velocityX = 0;
     velocityY = -1;
-  } else if (e.code == "ArrowDown" && velocityY != -1) {
+  } else if ((e.code == "ArrowDown" || e.code == "KeyS") && velocityY != -1) {
     velocityX = 0;
     velocityY = 1;
-  } else if (e.code == "ArrowLeft" && velocityX != 1) {
+  } else if ((e.code == "ArrowLeft" || e.code == "KeyA") && velocityX != 1) {
     velocityX = -1;
     velocityY = 0;
-  } else if (e.code == "ArrowRight" && velocityX != -1) {
+  } else if ((e.code == "ArrowRight" || e.code == "KeyD") && velocityX != -1) {
     velocityX = 1;
     velocityY = 0;
   }
 }
+
 
 function placeFood() {
   foodX = Math.floor(Math.random() * cols) * blockSize;
